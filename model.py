@@ -52,9 +52,9 @@ class BertSeg(BertPreTrainedModel):
         outputs = (logits,)
         if labels is not None:
             loss_mask = labels.gt(-1)
-            print("logits: ", logits)
-            print("labels: ", labels)
-            print("loss_mask: ", loss_mask)
+            # print("logits: ", logits)
+            # print("labels: ", labels)
+            # print("loss_mask: ", loss_mask)
             loss = self.crf(logits, labels, loss_mask) * (-1)
             outputs = (loss,) + outputs
 

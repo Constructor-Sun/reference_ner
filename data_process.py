@@ -76,7 +76,7 @@ class Processor:
                     continue
                 line = line.split(' ')
                 line_x.append(line[0])
-                line_y.append(self.tag2id[line[1]])
+                line_y.append(line[1]) # self.tag2id[line[1]]
 
         np.savez_compressed(output_dir, words=x_train, labels=y_train)
         print("length of x_train: ", len(x_train))

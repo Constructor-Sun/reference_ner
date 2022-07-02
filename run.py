@@ -141,9 +141,7 @@ def run():
         batch_data, batch_token_starts, batch_labels, _ = batch_samples
         for i in range(len(batch_data)):
             if len(batch_data[i]) != len(batch_labels[i]) + 3:
-                print("i: ", i)
-                print("batch_data[i]: ", len(batch_data[i]))
-                print("batch_labels[i]: ", len(batch_labels[i]))
+                pass
 
     train(train_loader, dev_loader, model, optimizer, scheduler, config.model_dir)
 

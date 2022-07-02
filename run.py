@@ -1,10 +1,10 @@
 import os
 
-from transformers import RobertaModel
 import utils
 import config
 import logging
 import numpy as np
+from tqdm import tqdm
 from data_process import Processor
 from data_loader import Sentence
 from model import BertSeg
@@ -43,7 +43,7 @@ def test():
     # Prepare model
     if config.model_dir is not None:
         # model = BertSeg.from_pretrained(config.model_dir)
-        model = BertSeg.from_pretrained('roberta-base')
+        model = BertSeg.from_pretrained(config.roberta_model, num_labels=len(config.label2id))
         model.to(config.device)
         logging.info("--------Load model from {}--------".format(config.model_dir))
     else:
@@ -101,7 +101,7 @@ def run():
     logging.info("--------Get Dataloader!--------")
     # Prepare model
     device = config.device
-    model = BertSeg.from_pretrained(config.bert_model, num_labels=len(config.label2id))
+    model = BertSeg.from_pretrained(config.roberta_model, num_labels=len(config.label2id))
     # 要先将model放到gpu上
     model = model.to(device)
     # Prepare optimizer
@@ -135,6 +135,14 @@ def run():
     #                                 device_ids=[config.local_rank], output_device=config.local_rank)
     # Train the model
     logging.info("--------Start Training!--------")
+    for idx, batch_samples in enumerate(tqdm(train_loader)):
+        batch_data, batch_token_starts, batch_labels, _ = batch_samples
+        for i in range(len(batch_data)):
+            if len(batch_data[i]) != len(batch_labels[i]) + 3:
+                print("i: ", i)
+                print("batch_data[i]: ", len(batch_data[i]))
+                print("batch_labels[i]: ", len(batch_labels[i]))
+
     train(train_loader, dev_loader, model, optimizer, scheduler, config.model_dir)
 
 

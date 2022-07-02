@@ -20,6 +20,7 @@ def train_epoch(train_loader, model, optimizer, scheduler, epoch):
         batch_token_starts = batch_token_starts.to(config.device)
         batch_labels = batch_labels.to(config.device)
         batch_masks = batch_data.gt(0)  # get padding mask
+        
         # compute model output and loss
         loss = model((batch_data, batch_token_starts),
                      token_type_ids=None, attention_mask=batch_masks, labels=batch_labels)[0]
@@ -59,7 +60,7 @@ def train(train_loader, dev_loader, model, optimizer, scheduler, model_dir): #, 
             #  选择一个进程保存
             # if local_rank == 0:
             # model.save_pretrained(model_dir)
-            torch.save(model, "./reference_ner/save/model.pkl")
+            torch.save(model, "./model.pkl")
             logging.info("--------Save best model!--------")
             print("--------Save best model!--------")
             if improve_f1 < config.patience:
@@ -112,6 +113,9 @@ def evaluate(dev_loader, model, mode='dev'):
             pred_tags.extend([[id2label.get(idx) for idx in indices] for indices in batch_output])
             # (batch_size, max_len - padding_label_len)
             true_tags.extend([[id2label.get(idx) for idx in indices if idx > -1] for indices in batch_tags])
+
+            if idx // 100 == 0:
+                torch.cuda.empty_cache()
 
     assert len(pred_tags) == len(true_tags)
     assert len(sent_data) == len(true_tags)

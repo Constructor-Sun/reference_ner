@@ -2,15 +2,10 @@ import torch
 import pickle
 import numpy as np
 from dataloader import Sentence
-from model_ner import CWS
 from model import BertSeg
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 import config
-
-ner_id2tag = ['B-TIME', 'E-TIME', 'B-ORG', 'O', 'E-MISC', 'S-LOC', 'E-PER', 'I-TIME', 'S-ORG', 'E-ORG', 'I-LOC', 'S-PER', 'S-MISC', 'I-ORG', 'E-LOC', 'I-MISC', 'B-LOC', 'I-PER', 'S-TIME', 'B-PER', 'B-MISC']
-ner_tag2id = {'B-MISC': 0, 'E-LOC': 1, 'B-TIME': 2, 'S-PER': 3, 'I-PER': 4, 'E-PER': 5, 'B-ORG': 6, 'O': 7, 'S-ORG': 8, 'S-LOC': 9, 'S-TIME': 10, 'E-MISC': 11, 'B-LOC': 12, 'I-ORG': 13, 'I-LOC': 14, 'E-TIME': 15, 'B-PER': 16, 'S-MISC': 17, 'I-MISC': 18, 'I-TIME': 19, 'E-ORG': 20}
-
 
 def getList(input_str):
     '''
@@ -35,7 +30,6 @@ if __name__ == '__main__':
     tag2id = tag2id = {'B': 0, 'M': 1, 'E': 2, 'S': 3}
     id2tag = ['B', 'M', 'E', 'S']
     model = torch.load('./save/model_tb8.pkl', map_location=torch.device('cpu'))
-    ner_model = torch.load('./save/model_infer.pkl', map_location=torch.device('cpu'))
     output = open('./cws_result.txt', 'w', encoding="utf-8")
     OUTPUT_PATH = './test_4.txt'
     batch_size = 1
@@ -116,7 +110,6 @@ if __name__ == '__main__':
             batch_masks = batch_data.gt(0)
             label_masks = batch_tags.gt(-1)
             predict = model.infer((batch_data, batch_token_starts), batch_masks, label_masks)
-            ner_predict = 
 
             for batch in range(batch_size):
                 for j in range(len(x_data[i+batch])):

@@ -73,8 +73,8 @@ def load_dev(mode):
         label_train = None
         word_dev = None
         label_dev = None
-    print("load_dev word_train:", word_train)
-    print("load_dev label_train:", label_train)
+    # print("load_dev word_train:", word_train)
+    # print("load_dev label_train:", label_train)
     return word_train, word_dev, label_train, label_dev
 
 

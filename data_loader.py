@@ -43,9 +43,10 @@ class Sentence(Dataset):
         for tag in origin_labels:
             label_id = [self.label2id.get(t) for t in tag]
             labels.append(label_id)
-            print("data_loader label_id: ", label_id)
         for sentence, label in zip(sentences, labels):
             data.append((sentence, label))
+        print("data_loader origin_labels:", origin_labels)
+        print("data_loader labels:", labels)
         return data
 
     def __getitem__(self, idx):

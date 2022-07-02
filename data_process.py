@@ -67,8 +67,6 @@ class Processor:
             for line in ifp:
                 line = line.strip()
                 if not line: # meaning the end of the training_data file?
-                    if line_y[0] < 0:
-                        print("line_y:", line_y)
                     x_train.append(line_x)
                     y_train.append(line_y)
                     line_x = []

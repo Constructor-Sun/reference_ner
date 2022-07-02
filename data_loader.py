@@ -46,7 +46,7 @@ class Sentence(Dataset):
         for sentence, label in zip(sentences, labels):
             data.append((sentence, label))
         print("data_loader origin_labels:", origin_labels)
-        print("data_loader labels:", labels)
+        print("self.label2id: ", self.label2id)
         return data
 
     def __getitem__(self, idx):

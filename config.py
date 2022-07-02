@@ -59,6 +59,6 @@ else:
     device = torch.device("cpu")
 
 # B：分词头部 M：分词词中 E：分词词尾 S：独立成词
-label2id = {'B': 0, 'M': 1, 'E': 2, 'S': 3}
+label2id = {'B-MISC': 0, 'E-LOC': 1, 'B-TIME': 2, 'S-PER': 3, 'I-PER': 4, 'E-PER': 5, 'B-ORG': 6, 'O': 7, 'S-ORG': 8, 'S-LOC': 9, 'S-TIME': 10, 'E-MISC': 11, 'B-LOC': 12, 'I-ORG': 13, 'I-LOC': 14, 'E-TIME': 15, 'B-PER': 16, 'S-MISC': 17, 'I-MISC': 18, 'I-TIME': 19, 'E-ORG': 20}
 
 id2label = {_id: _label for _label, _id in list(label2id.items())}

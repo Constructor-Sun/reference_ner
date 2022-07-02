@@ -47,7 +47,7 @@ min_epoch_num = 5
 patience = 0.0002
 patience_num = 4
 
-gpu = ''
+gpu = 'cuda'
 
 if gpu == 'cuda':
     # torch.distributed.init_process_group(backend='nccl')

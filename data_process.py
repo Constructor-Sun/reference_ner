@@ -54,7 +54,7 @@ class Processor:
                 except:
                     pass
         self.id2tag = sorted(unique) # in fact, it is the unique values of labels
-        self.id2tag = sorted(unique) # in fact, it is the unique values of labels
+        print("id2tag: ", self.id2tag)
         for i, label in enumerate(self.id2tag):
             self.tag2id[label] = i
 

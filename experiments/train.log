@@ -1,0 +1,6 @@
+2022-06-22 16:44:31,617:INFO: device: cuda
+2022-06-22 16:44:34,702:INFO: -------- training data process DONE!--------
+2022-06-22 16:44:34,807:INFO: -------- test data process DONE!--------
+2022-06-22 16:44:34,808:INFO: --------Process Done!--------
+2022-06-22 16:46:24,048:INFO: --------Dataset Build!--------
+2022-06-22 16:46:24,048:INFO: --------Get Dataloader!--------

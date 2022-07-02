@@ -73,6 +73,8 @@ def load_dev(mode):
         label_train = None
         word_dev = None
         label_dev = None
+    print("load_dev word_train:", word_train)
+    print("load_dev label_train:", label_train)
     return word_train, word_dev, label_train, label_dev
 
 
@@ -94,7 +96,7 @@ def run():
     # get dataset size
     train_size = len(train_dataset)
     # build data_loader
-    train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True,
+    train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=False,
                               collate_fn=train_dataset.collate_fn, num_workers=0) # sampler=DistributedSampler(train_dataset),
     dev_loader = DataLoader(dev_dataset, batch_size=config.batch_size, shuffle=True,
                             collate_fn=dev_dataset.collate_fn, num_workers=0) # sampler=DistributedSampler(dev_dataset),

@@ -43,6 +43,7 @@ class Sentence(Dataset):
         for tag in origin_labels:
             label_id = [self.label2id.get(t) for t in tag]
             labels.append(label_id)
+            print("data_loader label_id: ", label_id)
         for sentence, label in zip(sentences, labels):
             data.append((sentence, label))
         return data
@@ -72,7 +73,10 @@ class Sentence(Dataset):
         batch_len = len(sentences)
         # compute length of longest sentence in batch
         max_len = max([len(s[0]) for s in sentences])
-        max_len += 2
+
+        for j in range(batch_len):
+            if max_len < len(sentences[j][0]):
+                max_len += 2
         
         max_label_len = 0
         word_pad_idx = 0

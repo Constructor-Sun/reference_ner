@@ -137,9 +137,6 @@ def run():
     logging.info("--------Start Training!--------")
     for idx, batch_samples in enumerate(tqdm(train_loader)):
         batch_data, batch_token_starts, batch_labels, _ = batch_samples
-        print("i: ", 0)
-        print("batch_data[i]: ", len(batch_data[0]))
-        print("batch_labels[i]: ", len(batch_labels[0]))
         for i in range(len(batch_data)):
             if len(batch_data[i]) != len(batch_labels[i]) + 3:
                 print("i: ", i)

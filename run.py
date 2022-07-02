@@ -96,7 +96,7 @@ def run():
     # get dataset size
     train_size = len(train_dataset)
     # build data_loader
-    train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=False,
+    train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True,
                               collate_fn=train_dataset.collate_fn, num_workers=0) # sampler=DistributedSampler(train_dataset),
     dev_loader = DataLoader(dev_dataset, batch_size=config.batch_size, shuffle=True,
                             collate_fn=dev_dataset.collate_fn, num_workers=0) # sampler=DistributedSampler(dev_dataset),

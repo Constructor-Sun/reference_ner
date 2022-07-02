@@ -72,8 +72,8 @@ class Processor:
                         # print("len(line_x): ", len(line_x))
                         sub_word_list = get_sub_list(line_x, config.max_len - 5, config.sep_word)
                         sub_label_list = get_sub_list(line_y, config.max_len - 5, config.sep_label)
-                        x_train.extend(sub_word_list)
-                        y_train.extend(sub_label_list)
+                        # x_train.extend(sub_word_list)
+                        # y_train.extend(sub_label_list)
                     else:
                         x_train.append(line_x)
                         y_train.append(line_y)

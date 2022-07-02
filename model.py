@@ -1,23 +1,24 @@
 from transformers.models.bert.modeling_bert import *
+from transformers.models.roberta.modeling_roberta import RobertaPreTrainedModel
 from transformers import RobertaModel
 from torch.nn.utils.rnn import pad_sequence
 from torchcrf import CRF
 
 
-class BertSeg(BertPreTrainedModel):
+class BertSeg(BertPreTrainedModel): # BertPreTrainedModel
     def __init__(self, config):
         super(BertSeg, self).__init__(config)
         self.num_labels = config.num_labels
 
-        # self.bert = BertModel(config)
-        self.bert = RobertaModel(config)
-        self.dropout = nn.Dropout(config.hidden_dropout_prob)
+        self.bert = BertModel(config)
+        # self.bert = RobertaModel(config)
+        self.dropout = nn.Dropout(config.hidden_dropout_prob) # config.hidden_dropout_prob
 
         self.bilstm = nn.LSTM(
             input_size=1024,  # 768
             hidden_size=config.hidden_size // 2,  # 1024 / 2
             batch_first=True,
-            num_layers=2,
+            num_layers=3,
             dropout=0.5,  # 0.5
             bidirectional=True
         )
@@ -52,9 +53,6 @@ class BertSeg(BertPreTrainedModel):
         outputs = (logits,)
         if labels is not None:
             loss_mask = labels.gt(-1)
-            # print("logits: ", logits)
-            # print("labels: ", labels)
-            # print("loss_mask: ", loss_mask)
             loss = self.crf(logits, labels, loss_mask) * (-1)
             outputs = (loss,) + outputs
 

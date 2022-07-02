@@ -5,10 +5,10 @@ import torch
 bert_model = './reference_ner/pretrained_bert_models/bert-base-chinese/'
 roberta_model = './reference_ner/pretrained_bert_models/chinese-roberta-wwm-ext-large/'
 
-# model_dir = './reference_ner/experiments/'
-# data_dir = './reference_ner/data/'
-model_dir = './experiments/'
-data_dir = './data/'
+model_dir = './reference_ner/experiments/'
+data_dir = './reference_ner/data/'
+# model_dir = './experiments/'
+# data_dir = './data/'
 train_dir = data_dir + 'ner_train.npz'
 test_dir = data_dir + 'ner_valid.npz'
 files = ['ner_train', 'ner_valid']

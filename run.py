@@ -141,7 +141,7 @@ def run():
         print("batch_data[i]: ", len(batch_data[0]))
         print("batch_labels[i]: ", len(batch_labels[0]))
         for i in range(len(batch_data)):
-            if len(batch_data[i]) != len(batch_labels[i]) + 3 or batch_labels[i][0] == -1:
+            if len(batch_data[i]) != len(batch_labels[i]) + 3:
                 print("i: ", i)
                 print("batch_data[i]: ", len(batch_data[i]))
                 print("batch_labels[i]: ", len(batch_labels[i]))

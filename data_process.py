@@ -67,15 +67,13 @@ class Processor:
             for line in ifp:
                 line = line.strip()
                 if not line: # meaning the end of the training_data file?
-                    x_train.append(line_x)
-                    y_train.append(line_y)
                     if len(line_x) > config.max_len:
                         # 直接按最大长度切分
+                        # print("len(line_x): ", len(line_x))
                         sub_word_list = get_sub_list(line_x, config.max_len - 5, config.sep_word)
                         sub_label_list = get_sub_list(line_y, config.max_len - 5, config.sep_label)
                         x_train.extend(sub_word_list)
                         y_train.extend(sub_label_list)
-                        sep_num += 1
                     else:
                         x_train.append(line_x)
                         y_train.append(line_y)
@@ -91,6 +89,10 @@ class Processor:
         print("length of y_train: ", len(y_train))
         print("x_train[0]: ", x_train[0])
         print("y_train[0]: ", y_train[0])
+        for i in range(len(x_train)):
+            if len(x_train[i]) > 512:
+                print("i: ", i)
+                print("len: ", len(x_train[i]))
         logging.info("-------- {} data process DONE!--------".format(mode))
 
 def get_sub_list(init_list, sublist_len, sep_word):

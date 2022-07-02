@@ -3,7 +3,7 @@ import torch
 
 # bert_model = './pretrained_bert_models/bert-base-chinese/'
 bert_model = './reference_ner/pretrained_bert_models/bert-base-chinese/'
-roberta_model = './reference_ner/pretrained_bert_models/chinese_roberta_wwm_large_ext/'
+roberta_model = './reference_ner/pretrained_bert_models/chinese-roberta-wwm-ext-large/'
 
 model_dir = './reference_ner/experiments/'
 data_dir = './reference_ner/data/'
